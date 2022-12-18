@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MenuController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/beranda', [MenuController::class, 'home']);
+Route::get('/info-kegiatan', [MenuController::class, 'infoKegiatan']);
+Route::get('/data-siswa', [MenuController::class, 'dataSiswa']);
