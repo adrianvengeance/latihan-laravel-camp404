@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MenuController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,3 +22,7 @@ Route::get('/', function () {
 Route::get('/beranda', [MenuController::class, 'home']);
 Route::get('/info-kegiatan', [MenuController::class, 'infoKegiatan']);
 Route::get('/data-siswa', [MenuController::class, 'dataSiswa']);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
