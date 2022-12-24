@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Siswa;
 use Illuminate\Http\Request;
 
 class SiswaController extends Controller
@@ -13,7 +14,8 @@ class SiswaController extends Controller
      */
     public function index()
     {
-        //
+        $dataSiswa = Siswa::all();
+        return view('index', ['siswa' => $dataSiswa]);
     }
 
     /**
@@ -23,7 +25,7 @@ class SiswaController extends Controller
      */
     public function create()
     {
-        //
+        return view('form_tambah');
     }
 
     /**
@@ -34,7 +36,13 @@ class SiswaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Siswa::create([
+            'nama'  => $request->nama,
+            'nis'   => $request->nis,
+            'tgl_lahir' => $request->tgl_lahir
+        ]);
+
+        return redirect()->route('siswa.index');
     }
 
     /**
@@ -45,7 +53,8 @@ class SiswaController extends Controller
      */
     public function show($id)
     {
-        //
+        $siswa = Siswa::where('id', $id)->first();
+        return view('profile_siswa', ['siswa' => $siswa]);
     }
 
     /**
@@ -56,7 +65,8 @@ class SiswaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $dataSiswa = Siswa::find($id);
+        return view('form_ubah', ['siswa' => $dataSiswa]);
     }
 
     /**
@@ -68,7 +78,13 @@ class SiswaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $siswa = Siswa::find($id);
+        $siswa->nama = $request->nama;
+        $siswa->nis = $request->nis;
+        $siswa->tgl_lahir = $request->tgl_lahir;
+        $siswa->save();
+
+        return redirect()->route('siswa.index');
     }
 
     /**
@@ -79,6 +95,9 @@ class SiswaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $siswa = Siswa::find($id);
+        $siswa->delete();
+
+        return redirect()->route('siswa.index');
     }
 }
