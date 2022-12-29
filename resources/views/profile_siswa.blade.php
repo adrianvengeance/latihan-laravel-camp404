@@ -7,8 +7,10 @@
         <h3>Profile Siswa</h3>
       </div>
       <div class="card-body">
-        <a href="{{ route('siswa.index') }}"
-           class="mb-2">Kembali</a>
+        @can('isAdmin')
+          <a href="{{ route('siswa.index') }}"
+             class="mb-2">Kembali</a>
+        @endcan
         <div class="row ms-2">
           <h4 class="col-4">Nama</h4>
           <h4 class="col-8">: {{ $siswa->nama }}</h4>
