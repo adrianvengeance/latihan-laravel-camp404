@@ -56,6 +56,10 @@
                  href="{{ url('/data-siswa') }}">Data Siswa</a></li>
             <li><a class="nav-link"
                  href="{{ url('info-kegiatan') }}">Info Kegiatan</a></li>
+            @can('isAdmin')
+              <a href="{{ url('/user') }}"
+                 class="nav-link">Manajemen User</a>
+            @endcan
           </ul>
 
           <!-- Right Side Of Navbar -->

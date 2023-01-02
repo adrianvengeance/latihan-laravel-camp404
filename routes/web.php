@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\SiswaController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -29,3 +30,5 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('siswa', SiswaController::class)->middleware('can:isAdmin');
 Route::resource('siswa', SiswaController::class)->only('show')->middleware('can:isAdminSiswa');
+
+Route::resource('user', UserController::class)->middleware('can:isAdmin');

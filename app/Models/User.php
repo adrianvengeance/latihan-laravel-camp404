@@ -21,6 +21,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+
+        // i added this
+        'siswa_id',
+        'role'
     ];
 
     /**
